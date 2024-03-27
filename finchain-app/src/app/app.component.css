@@ -1,0 +1,48 @@
+.finchain-container {
+    font-family: 'Arial', sans-serif;
+    color: #fff;
+    background: linear-gradient(to bottom, #80DAEB, #3C9EDE);
+    height: 100vh;
+
+}
+
+h1 {
+    font-size: 3em;
+    margin-bottom: 1em;
+}
+
+.button-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 2em;
+}
+
+button {
+    border: none;
+    padding: 10px 20px;
+    margin: 0 auto;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.registration-button {
+    background-color: #ccc;
+    color: #000;
+    border: #000 1px solid;
+}
+
+.registration-button:hover {
+    background-color: #bbb;
+}
+
+.login-button {
+    background-color: #888;
+    color: #fff;
+    border: #333333 1px solid;
+}
+
+.login-button:hover {
+    background-color: #777;
+}

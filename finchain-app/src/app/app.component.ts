@@ -10,4 +10,8 @@ import { RouterOutlet } from '@angular/router';
 })
 export class AppComponent {
   title = 'finchain-app';
+  testAdmin() {
+    console.log("Let's gooooooo!!!");
+
+  }
 }
