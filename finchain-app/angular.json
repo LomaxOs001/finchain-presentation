@@ -14,7 +14,7 @@
           "builder": "@angular-devkit/build-angular:application",
           "options": {
             "outputPath": "dist/finchain-app",
-            "index": "src/index.html",
+            "index": "src/assets/index.html",
             "browser": "src/main.ts",
             "polyfills": [
               "zone.js"
@@ -25,7 +25,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/assets/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
             "scripts": []
           },
@@ -84,7 +85,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/assets/styles.css"
             ],
             "scripts": []
           }
