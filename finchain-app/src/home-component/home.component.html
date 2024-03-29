@@ -14,25 +14,24 @@
   <!----------Registration form------->
   <div id="registra" class="bg-white p-6 max-w-sm mx-auto rounded shadow-lg">
     <div class="mb-4">
-      <label class="block text-blue-700 text-sm font-bold mb-2" for="employee-id-registra">
-        Employee ID
-      </label>
-      <input id="employee-id-registra" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker"
-        type="text" placeholder="Employee ID" autocomplete="username">
+      <label class="block text-blue-700 text-sm font-bold mb-2" for="employee-id-registra">Employee ID</label>
+      <input id="employee-id-registra" [(ngModel)]="employeeID"
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker text-black" type="text"
+        placeholder="Employee ID" autocomplete="username">
     </div>
 
     <div class="mb-6">
       <label class="block text-blue-700 text-sm font-bold mb-2" for="name">
         Name
       </label>
-      <input id="name" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker" type="text"
+      <input id="name" [(ngModel)]="name"
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker text-black" type="text"
         placeholder="Name" autocomplete="name">
     </div>
 
     <div class="flex items-center justify-center">
-      <button class="bg-black hover:bg-gray-700 text-white font-bold py-2 px-4 rounded" type="button">
-        Register
-      </button>
+      <button class="bg-black hover:bg-gray-700 text-white font-bold py-2 px-4 rounded" type="button"
+        (click)="onRegister(employeeID,name)">Register</button>
     </div>
   </div>
   <!----------login form------->
@@ -42,8 +41,9 @@
       <label class="block text-blue-700 text-sm font-bold mb-2" for="employee-id-login">
         Employee ID
       </label>
-      <input id="employee-id-login" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker"
-        type="text" placeholder="Employee ID">
+      <input id="employee-id-login"
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker text-black" type="text"
+        placeholder="Employee ID">
 
     </div>
 
@@ -52,8 +52,8 @@
       <label class="block text-blue-700 text-sm font-bold mb-2" for="name">
         Password
       </label>
-      <input id="password" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker" type="text"
-        placeholder="Password">
+      <input id="password" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker text-black"
+        type="text" placeholder="Password">
 
     </div>
 
