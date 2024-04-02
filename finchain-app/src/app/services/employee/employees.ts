@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
 
 @Injectable({
-    providedIn: 'root' // This makes the service available application-wide
+    providedIn: 'root'
 
 })
 export class Employees {

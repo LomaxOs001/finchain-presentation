@@ -1,29 +1,25 @@
-import { Component, OnInit } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component } from '@angular/core';
 import { HttpClientModule, HttpEventType, HttpResponse } from '@angular/common/http';
-import { EmployeeAccountTransfer } from '../services/employee/employeeAccountTransfer';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Employees } from '../services/employee/employees';
+import { EmployeeAccountTransfer } from '../services/employee/employeeAccountTransfer';
 
 @Component({
-  selector: 'app-root',
+  selector: 'app-registration',
   standalone: true,
-  imports: [RouterOutlet, HttpClientModule, FormsModule, CommonModule],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+  imports: [HttpClientModule, FormsModule, CommonModule], //import a component to add to this component
+  templateUrl: './registration.component.html',
+  styleUrl: './registration.component.css'
 })
+export class RegistrationComponent {
 
-
-export class HomeComponent {
-  title = 'finchain-app';
   employeeID: string = '';
   name: string = '';
 
   constructor(private eat: EmployeeAccountTransfer) { }
 
+  onRegister(employeeID: string, name: string): void { //moving this function to register-component.ts
 
-  onRegister(employeeID: string, name: string): void {
 
     this.eat.registerEmployee(employeeID, name).subscribe({
       next: (event: any) => {
@@ -55,4 +51,5 @@ export class HomeComponent {
     console.log(this.eat.generatePhrase());
 
   }
+
 }
