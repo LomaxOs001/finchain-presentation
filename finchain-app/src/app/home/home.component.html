@@ -1,13 +1,18 @@
 <div class="finchain-container">
-  <div
-    class="bg-gradient-to-r from-blue-300 to-blue-800 flex items-center justify-between p-5 items-top drop-shadow-lg">
-    <h1 class="text-4xl font-bold ">
-      <span class="text-black">FinChain</span><br><span class="text-3xl drop-shadow-lg">Storage</span>
+  <div class="bg-gradient-to-r from-blue-300 to-blue-800 flex items-center justify-between p-5 drop-shadow-lg mb-10">
+    <h1 class="text-4xl font-bold text-black">
+      FinChain<br><span class="text-3xl drop-shadow-lg">Storage</span>
     </h1>
-  </div>
-  <div class="button-container">
-    <button routerLink="api/register" class="registration-button">Register</button>
-    <button routerLink="api/login" class="login-button">Login</button>
+    <div class="flex items-center space-x-4">
+      <button routerLink="api/register"
+        class="py-2 px-4 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
+        Register
+      </button>
+      <button routerLink="api/login"
+        class="py-2 px-4 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
+        Login
+      </button>
+    </div>
   </div>
   <router-outlet></router-outlet>
 </div>

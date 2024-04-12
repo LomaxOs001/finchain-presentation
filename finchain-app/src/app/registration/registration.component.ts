@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { HttpClientModule, HttpEventType, HttpResponse } from '@angular/common/http';
+import { Component, input } from '@angular/core';
+import { RouterOutlet, RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { EmployeeAccountTransfer } from '../services/employee/employeeAccountTransfer';
@@ -7,49 +8,42 @@ import { EmployeeAccountTransfer } from '../services/employee/employeeAccountTra
 @Component({
   selector: 'app-registration',
   standalone: true,
-  imports: [HttpClientModule, FormsModule, CommonModule], //import a component to add to this component
+  imports: [HttpClientModule, FormsModule, CommonModule, RouterModule, RouterOutlet], //import a component to add to this component
   templateUrl: './registration.component.html',
   styleUrl: './registration.component.css'
 })
 export class RegistrationComponent {
 
-  employeeID: string = '';
-  name: string = '';
+  form: any = {
+    employeeId: null,
+    name: null
+  };
+  isRegSuccessful = false;
+  isRegFailed = false;
+  errorMessage = '';
 
   constructor(private eat: EmployeeAccountTransfer) { }
 
-  onRegister(employeeID: string, name: string): void { //moving this function to register-component.ts
+  onRegister(): void {
+    const { employeeId, name } = this.form;
 
+    this.eat.registerEmployee(employeeId, name).subscribe({
 
-    this.eat.registerEmployee(employeeID, name).subscribe({
-      next: (event: any) => {
-        if (event.type === HttpEventType.UploadProgress) {
-          console.log('Employee registration in progress...');
-        }
-        else if (event instanceof HttpResponse) {
-          console.log(event.body.message);
-        }
-
+      next: data => {
+        console.log(data);
+        this.isRegSuccessful = true;
+        this.isRegFailed = false;
       },
-      error: (error: any) => {
-        console.error('Employee registration failed');
-
-        if (error.status === 404) {
-          console.error('Employee registration failed with invalid URL');
-        }
-        else if (error.status === 401) {
-          console.error('Employee registration failed with unauthorized access');
-        }
-
+      error: err => {
+        this.errorMessage = err.error.message;
+        this.isRegFailed = true;
+        throw new Error('Employee registration failed\n' + err.error.message);
       },
 
       complete: () => {
         console.log('Employee registration completed');
       }
     });
-    console.log(this.eat.registerEmployee(employeeID, name).toString());
-    console.log(this.eat.generatePhrase());
-
   }
 
 }

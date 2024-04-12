@@ -1,23 +1,63 @@
 <!----------Registration form------->
 <div id="registra" class="bg-white p-6 max-w-sm mx-auto rounded shadow-lg">
-    <div class="mb-4">
-        <label class="block text-blue-700 text-sm font-bold mb-2" for="employee-id-registra">Employee ID</label>
-        <input id="employee-id-registra" [(ngModel)]="employeeID"
-            class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker text-black" type="text"
-            placeholder="Employee ID" autocomplete="username">
-    </div>
+    <div class="">
+        <img id="profile-img" class="profile-img-card rounded-full w-25 h-25 mx-auto p-1 ring-2 mb-3"
+            src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
 
-    <div class="mb-6">
-        <label class="block text-blue-700 text-sm font-bold mb-2" for="name">
-            Name
-        </label>
-        <input id="name" [(ngModel)]="name"
-            class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker text-black" type="text"
-            placeholder="Name" autocomplete="name">
-    </div>
+        <!-- form-->
 
-    <div class="flex items-center justify-center">
-        <button class="bg-black hover:bg-gray-700 text-white font-bold py-2 px-4 rounded" type="button"
-            (click)="onRegister(employeeID,name)">Register</button>
+        <div *ngIf="!isRegSuccessful">
+            <form class="bg-white shadow-md rounded px-2 pt-6 pb-8 mb-2" name="form"
+                (ngSubmit)="f.form.valid && onRegister()" #f="ngForm" novalidate>
+
+                <div class="mb-6">
+                    <label class="block text-blue-700 text-sm font-bold mb-2" for="employee-id-registra">Employee
+                        ID</label>
+
+                    <input id="employee-id-registra"
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker text-black"
+                        type="text" name="employeId" placeholder="Employee ID" autocomplete="username"
+                        [(ngModel)]="form.employeeId" required minlength="3" maxlength="12" #employeeId="ngModel"
+                        [ngClass]="{'is-invalid': f.submitted && employeeId.errors}" />
+
+
+                    <div *ngIf="f.submitted && employeeId.errors" class="invalid-feedback">
+                        <div *ngIf="employeeId.errors['required']">Employee ID is required</div>
+                        <div *ngIf="employeeId.errors['minlength']">Employee ID must be at least 3 characters</div>
+                        <div *ngIf="employeeId.errors['maxlength']">Employee ID must be at most 12 characters</div>
+
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <label class="block text-blue-700 text-sm font-bold mb-2" for="name">
+                        Name
+                    </label>
+                    <input id="name"
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker text-black"
+                        type="text" name="name" placeholder="Name" autocomplete="name" [(ngModel)]="form.name" required
+                        minlength="2" maxlength="20" #name="ngModel"
+                        [ngClass]="{'is-invalid': f.submitted && name.errors}" />
+
+                    <div *ngIf="f.submitted && name.errors" class="invalid-feedback">
+                        <div *ngIf="name.errors['required']">Name is required</div>
+                        <div *ngIf="name.errors['minlength']">Name must be at least 2 characters</div>
+                        <div *ngIf="name.errors['maxlength']">Name must be at most 20 characters</div>
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-center">
+                    <button class="btn btn-primary bg-black hover:bg-gray-600 text-white font-bold py-2 px-4 rounded"
+                        type="submit">Register</button>
+                </div>
+                <div *ngIf="f.submitted && isRegFailed" class="alert alert-warning pt-9"> Registration Failed! <br />
+                    {{errorMessage}}</div>
+            </form>
+        </div>
+        <div *ngIf="isRegSuccessful" class="text-center">
+            <p class="text-green-500">Registration successful</p>
+        </div>
+
+        <!-- form-->
     </div>
 </div>
