@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UploadComponent } from './upload.component';
+import { UploadComponent } from './data.management.component';
 
 describe('UploadComponent', () => {
   let component: UploadComponent;
@@ -10,8 +10,8 @@ describe('UploadComponent', () => {
     await TestBed.configureTestingModule({
       imports: [UploadComponent]
     })
-    .compileComponents();
-    
+      .compileComponents();
+
     fixture = TestBed.createComponent(UploadComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

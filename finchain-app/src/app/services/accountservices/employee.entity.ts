@@ -4,7 +4,7 @@ import { Inject, Injectable } from '@angular/core';
     providedIn: 'root'
 
 })
-export class Employees {
+export class EmployeeAccountService {
     private employeeId: string;
     private name: string;
     private password: string;
@@ -20,8 +20,8 @@ export class Employees {
         return `Employee ID: ${this.employeeId}, Password: ${this.password}`;
     }
 
-    static fromJSON(json: any): Employees {
-        return new Employees(json.employeeId, json.name, json.password, json.recoveryPhrase);
+    static fromJSON(json: any): EmployeeAccountService {
+        return new EmployeeAccountService(json.employeeId, json.name, json.password, json.recoveryPhrase);
     }
 
 } 

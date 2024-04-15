@@ -1,6 +1,6 @@
 <!----------Registration form------->
 <div id="registra" class="bg-white p-6 max-w-sm mx-auto rounded shadow-lg">
-    <div class="">
+    <div class=""> <span class="text-lg font-semibold text-blue-600">Registration</span>
         <img id="profile-img" class="profile-img-card rounded-full w-25 h-25 mx-auto p-1 ring-2 mb-3"
             src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
 
@@ -21,7 +21,7 @@
                         [ngClass]="{'is-invalid': f.submitted && employeeId.errors}" />
 
 
-                    <div *ngIf="f.submitted && employeeId.errors" class="invalid-feedback">
+                    <div *ngIf="f.submitted && employeeId.errors" class="text-red-500 text-xs italic">
                         <div *ngIf="employeeId.errors['required']">Employee ID is required</div>
                         <div *ngIf="employeeId.errors['minlength']">Employee ID must be at least 3 characters</div>
                         <div *ngIf="employeeId.errors['maxlength']">Employee ID must be at most 12 characters</div>
@@ -39,7 +39,7 @@
                         minlength="2" maxlength="20" #name="ngModel"
                         [ngClass]="{'is-invalid': f.submitted && name.errors}" />
 
-                    <div *ngIf="f.submitted && name.errors" class="invalid-feedback">
+                    <div *ngIf="f.submitted && name.errors" class="text-red-500 text-xs italic">
                         <div *ngIf="name.errors['required']">Name is required</div>
                         <div *ngIf="name.errors['minlength']">Name must be at least 2 characters</div>
                         <div *ngIf="name.errors['maxlength']">Name must be at most 20 characters</div>
