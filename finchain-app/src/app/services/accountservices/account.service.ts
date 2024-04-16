@@ -19,7 +19,7 @@ export class AccountService {
     private password = '';
     private recoveryPhrase = '';
     private loggedIn = new BehaviorSubject<boolean>(false);
-    private authzUsername = new BehaviorSubject<string>('');
+    private authzEmployeeName = new BehaviorSubject<string>('');
 
     constructor(private http: HttpClient, private util: Utility, private sS: SessionStorage, private router: Router) { }
 
@@ -30,15 +30,16 @@ export class AccountService {
         this.password = this.util.generatePassword();
         this.recoveryPhrase = this.util.generatePhrase();
 
-        return this.http.post(environment.URL_API + 'register', {
-            employeeId,
-            name,
-            password: this.password,
-            recoveryPhrase: this.recoveryPhrase
+        return this.http.post(environment.URL_API + 'register',
+            {
+                employeeId,
+                name,
+                password: this.password,
+                recoveryPhrase: this.recoveryPhrase
 
-        }, httpOptions);
+            }
+            , httpOptions);
     }
-
     //login of employee
     login(employeeId: string, password: string): Observable<any> {
 
@@ -48,31 +49,35 @@ export class AccountService {
         }, httpOptions);
     }
 
+    //set login status to retrieve login event details
     setLoginStatus(isLoggedIn: boolean, sessionId?: string, authzName: string = ''): void {
 
         this.loggedIn.next(isLoggedIn);
-        this.authzUsername.next(authzName);
+        this.authzEmployeeName.next(authzName);
 
         if (isLoggedIn && sessionId) {
             this.sS.saveToken(sessionId);
         }
     }
 
+    //get login status
     isLoggedIn(): Observable<boolean> {
         return this.loggedIn.asObservable();
     }
 
-    getAuthzUsername(): Observable<string> {
-        return this.authzUsername.asObservable();
+    //return the name of the authenticated employee
+    getAuthzEmployeeName(): Observable<string> {
+        return this.authzEmployeeName.asObservable();
     }
 
     logout(): void {
         this.loggedIn.next(false);
         this.router.navigate(['/api/login']);
+        this.sS.signOut();
         //return this.http.post(environment.URL_API + 'logout', {}, httpOptions);
     }
 
-    //testing purposes
+    //Employee recovery phrase that get returned when registered
     getRecoveryPhrase(): String {
         return this.recoveryPhrase + " -- " + this.password;
     }

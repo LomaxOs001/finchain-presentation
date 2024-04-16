@@ -16,7 +16,7 @@ export class LogoutComponent implements OnInit {
   constructor(private as: AccountService) { }
 
   ngOnInit(): void {
-    this.as.getAuthzUsername().subscribe((res) => {
+    this.as.getAuthzEmployeeName().subscribe((res) => {
       this.authzUser = res;
     });
   }

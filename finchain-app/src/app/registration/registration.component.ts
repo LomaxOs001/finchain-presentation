@@ -44,7 +44,7 @@ export class RegistrationComponent {
         this.router.navigate(['/api/login']);
       },
       error: err => {
-        this.errorMessage = err.error.message;
+        this.errorMessage = err.error;
         this.isRegFailed = true;
         //throw new Error('Employee registration failed\n' + err.error.message);
       }

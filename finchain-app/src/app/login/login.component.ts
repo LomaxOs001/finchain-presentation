@@ -45,9 +45,10 @@ export class LoginComponent {
       },
       error: err => {
 
-        this.errorMessage = err.error.message;
+        this.errorMessage = err.error;
         this.isLogFailed = true;
-        console.log('Login failed: ' + err.error.message);
+        console.log('Login failed: ' + err.error);
+        this.router.navigate(['/api/register']);
       }
     });
   }
