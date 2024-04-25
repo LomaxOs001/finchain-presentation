@@ -26,7 +26,7 @@ export class LoginComponent {
   isLogFailed = false;
   errorMessage = '';
 
-  constructor(private router: Router, private as: AccountService, private session: SessionStorage) { }
+  constructor(private router: Router, private as: AccountService) { }
 
   onLogin(): void {
     const { employeeId, password } = this.form;
@@ -34,7 +34,7 @@ export class LoginComponent {
     this.as.login(employeeId, password).subscribe({
       next: data => {
 
-        console.log(data);
+        window.alert('Successful Login\nResponse:' + data.Response + ' - ' + data.status + '\nSession Id:' + data.sessionId);
 
         this.isLogSuccessful = true;
         this.isLogFailed = false;
@@ -47,7 +47,7 @@ export class LoginComponent {
 
         this.errorMessage = err.error;
         this.isLogFailed = true;
-        console.log('Login failed: ' + err.error);
+        window.alert('Login failed: Employee not found: You must register first');
         this.router.navigate(['/api/register']);
       }
     });

@@ -32,19 +32,20 @@ export class RegistrationComponent {
 
       next: data => {
 
-        console.log(data);
+        window.alert('Successful Reg\nResponse:' + data.Response + ' - ' + data.status + '\nTransaction Id:' + data.TransactionID);
 
         this.isRegSuccessful = true;
         this.isRegFailed = false;
 
         //Return the recovery phrase
-        console.log('this phrase is: ' + this.eat.getRecoveryPhrase());
+        console.log('Reg Details\n' + this.eat.getRecoveryPhrase());
+
 
         //redirect to login page
         this.router.navigate(['/api/login']);
       },
       error: err => {
-        this.errorMessage = err.error;
+        this.errorMessage = err;
         this.isRegFailed = true;
         //throw new Error('Employee registration failed\n' + err.error.message);
       }

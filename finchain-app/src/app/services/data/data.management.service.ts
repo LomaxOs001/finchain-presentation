@@ -18,7 +18,6 @@ export class DataManagementService {
 
     const req = new HttpRequest('POST', `${environment.URL_API}datamanager`, formData, {
       headers: headers,
-      //reportProgress: true  // Enable progress tracking for file uploads
     });
 
     return this.http.request(req);
@@ -32,7 +31,7 @@ export class DataManagementService {
 
   private setRequestToken(token: string): HttpHeaders {
     return new HttpHeaders({
-      'Authorization': `Bearer ${token}`
+      'Authorisation': `Bearer ${token}`
     });
   }
 }

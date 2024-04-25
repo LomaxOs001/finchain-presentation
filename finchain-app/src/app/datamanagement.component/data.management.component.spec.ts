@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UploadComponent } from './data.management.component';
+import { DataManagementComponent } from './data.management.component';
 
 describe('UploadComponent', () => {
-  let component: UploadComponent;
-  let fixture: ComponentFixture<UploadComponent>;
+  let component: DataManagementComponent;
+  let fixture: ComponentFixture<DataManagementComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [UploadComponent]
+      imports: [DataManagementComponent]
     })
       .compileComponents();
 
-    fixture = TestBed.createComponent(UploadComponent);
+    fixture = TestBed.createComponent(DataManagementComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

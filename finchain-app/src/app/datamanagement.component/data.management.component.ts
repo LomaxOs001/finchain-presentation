@@ -11,7 +11,7 @@ import { SessionStorage } from '../services/data/session.storage';
 })
 export class DataManagementComponent {
 
-  currentFile?: File;
+  file?: File;
   isUploadSuccessful = false;
   isUploadFailed = false;
   errorMessage = '';
@@ -19,25 +19,37 @@ export class DataManagementComponent {
   constructor(private dms: DataManagementService, private session: SessionStorage) { }
 
   selectFile(event: any): void {
-    this.currentFile = event.target.files.item(0);
+    this.file = event.target.files.item(0);
   }
 
   onUpload(): void {
-    if (this.currentFile) {
-      this.dms.uploadDocuments(this.currentFile, this.session.getToken() || '').subscribe({
+    if (this.file) {
+
+      this.isUploadSuccessful = false;
+      this.isUploadFailed = false;
+      //this.errorMessage = ''; 
+
+      this.dms.uploadDocuments(this.file, this.session.getToken() || '').subscribe({
         next: data => {
           console.log(data);
 
+
           this.isUploadSuccessful = true;
           this.isUploadFailed = false;
+          window.alert('Upload successful');
         },
         error: err => {
 
-          this.errorMessage = err.error.message;
+          //this.errorMessage = err.error;
           this.isUploadFailed = true;
-          console.log('Upload failed: ' + err.error.message);
+          console.log('Upload failed: No Access');
         }
       });
+    } else {
+
+      //this.errorMessage = 'No file selected';
+      this.isUploadFailed = true;
+      window.alert('No file selected');
     }
 
   }

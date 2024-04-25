@@ -17,7 +17,7 @@
                     <input id="employee-id-login"
                         class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker text-black"
                         type="text" placeholder="Employee ID" [(ngModel)]="form.employeeId" name="employeeId"
-                        #employeeId="ngModel" required minlength="3" maxlength="12">
+                        #employeeId="ngModel" required minlength="3" maxlength="30">
 
                     <div *ngIf="f.submitted && employeeId.errors" class="text-red-500 text-xs italic">
                         <div *ngIf="employeeId.errors['required']">Employee ID is required.</div>
