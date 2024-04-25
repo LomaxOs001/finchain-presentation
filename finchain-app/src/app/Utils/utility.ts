@@ -10,9 +10,9 @@ export class Utility {
     //generate an employee password
     public generatePassword(): string {
         const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%&*?£';
-        let password = 'fin';
+        let password = 'fin-';
         const charactersLength = characters.length;
-        for (let i = 0; i < 7; i++) {
+        for (let i = 0; i < 10; i++) {
             password += characters.charAt(Math.floor(Math.random() * charactersLength));
         }
         return password;

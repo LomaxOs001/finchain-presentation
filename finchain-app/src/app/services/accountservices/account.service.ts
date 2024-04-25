@@ -79,7 +79,7 @@ export class AccountService {
 
     //Employee recovery phrase that get returned when registered
     getRecoveryPhrase(): String {
-        return this.recoveryPhrase + " \n " + this.password;
+        return this.recoveryPhrase + " \nPassword:\n" + this.password;
     }
 
 

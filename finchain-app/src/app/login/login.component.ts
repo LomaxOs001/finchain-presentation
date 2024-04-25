@@ -34,7 +34,7 @@ export class LoginComponent {
     this.as.login(employeeId, password).subscribe({
       next: data => {
 
-        window.alert('Successful Login\nResponse:' + data.Response + ' - ' + data.status + '\nSession Id:' + data.sessionId);
+        window.alert('Response:\n' + data.Response + ' - ' + data.status + '\nSession Id:\n' + data.sessionId);
 
         this.isLogSuccessful = true;
         this.isLogFailed = false;

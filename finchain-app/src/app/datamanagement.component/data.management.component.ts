@@ -42,12 +42,12 @@ export class DataManagementComponent {
 
           //this.errorMessage = err.error;
           this.isUploadFailed = true;
-          console.log('Upload failed: No Access');
+          //console.log('Upload failed: No Access');
         }
       });
     } else {
 
-      //this.errorMessage = 'No file selected';
+      this.errorMessage = 'No file selected';
       this.isUploadFailed = true;
       window.alert('No file selected');
     }

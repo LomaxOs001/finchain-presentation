@@ -21,6 +21,7 @@ export class RegistrationComponent {
   };
   isRegSuccessful = false;
   isRegFailed = false;
+  recoveryPhrase = '';
   errorMessage = '';
 
   constructor(private router: Router, private eat: AccountService) { }
@@ -32,20 +33,21 @@ export class RegistrationComponent {
 
       next: data => {
 
-        window.alert('Successful Reg\nResponse:' + data.Response + ' - ' + data.status + '\nTransaction Id:' + data.TransactionID);
+        window.alert('Response:\n' + data.Response + ' - ' + data.status + '\nTrxID:\n' + data.TransactionID + '\nPhrases:\n' + this.eat.getRecoveryPhrase(),);
 
         this.isRegSuccessful = true;
         this.isRegFailed = false;
 
         //Return the recovery phrase
         console.log('Reg Details\n' + this.eat.getRecoveryPhrase());
+        this.recoveryPhrase = 'Reg Details\n' + this.eat.getRecoveryPhrase();
 
 
         //redirect to login page
         this.router.navigate(['/api/login']);
       },
       error: err => {
-        this.errorMessage = err;
+        this.errorMessage = err.error.message;
         this.isRegFailed = true;
         //throw new Error('Employee registration failed\n' + err.error.message);
       }
