@@ -6,7 +6,13 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "build-image": "docker build -t finchain-dapp-image .",
+    "remove-image": "docker rmi finchain-dapp-image",
+    "run-container": "docker run --name finchain-dapp-container -d -p 4200:80 finchain-dapp-image",
+    "remove-container": "docker rm -f finchain-dapp-container",
+    "containerize": "npm run build-image && npm run run-container",
+    "recontainerize": "npm run remove-container && npm run build-image && npm run run-container"
   },
   "private": true,
   "dependencies": {
@@ -26,9 +32,9 @@
     "zone.js": "~0.14.3"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^17.0.10",
+    "@angular-devkit/build-angular": "^17.3.7",
     "@angular/cli": "^17.3.2",
-    "@angular/compiler-cli": "^17.3.0",
+    "@angular/compiler-cli": "^17.3.6",
     "@types/jasmine": "~5.1.0",
     "autoprefixer": "^10.4.19",
     "crypto-js": "^4.2.0",
